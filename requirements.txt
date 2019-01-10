@@ -1,0 +1,5 @@
+blackduck>=0.0.8
+
+# for unit tests
+pytest
+
