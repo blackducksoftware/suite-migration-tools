@@ -63,6 +63,14 @@ MainThread: 2019-02-11 11:48:40,338: INFO: Failed to update 71 suite components 
 MainThread: 2019-02-11 11:48:40,339: INFO: Dumped 71 components into sample-data/code-center-export-02-05-2019-failed.csv
 ```
 
+#### Resetting Black Duck (Hub) Component Approval Status
+
+code_center_component_import.py has an option to reset the component approval status to its default (un-reviewed). To reset do the following:
+
+```
+python code_center_component_import.py -r <name-of-pipe-delimited-file-from-step-1>
+```
+
 
 
 ## Snippet reconciliation
