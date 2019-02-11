@@ -1,4 +1,4 @@
-blackduck>=0.0.9
+blackduck>=0.0.12
 
 # for unit tests
 pytest
