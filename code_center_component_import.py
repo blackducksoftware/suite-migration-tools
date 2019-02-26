@@ -192,11 +192,13 @@ class CodeCenterComponentImport(object):
 			equivalent = []
 			skipped = []
 			for suite_component_info in reader:
+				import pdb; pdb.set_trace()
 				# if component type not given, default to STANDARD (i.e. KB component)
 				# component_type = suite_component_info.get(CodeCenterComponentImport.COMPONENT_TYPE_COL_NAME, "STANDARD")
 				# TODO: Fix this once we have the component type info restored
 				component_type = "STANDARD" 
 				if component_type in CodeCenterComponentImport.SUPPORTED_COMPONENT_TYPES:
+					import pdb; pdb.set_trace()
 					logging.debug("Importing suite component: {}".format(suite_component_info))
 					result = self._import_component(suite_component_info)
 					if result == 'Updated':
@@ -251,6 +253,8 @@ if __name__ == "__main__":
 		'WARNING': logging.WARNING,
 	}
 	logging.basicConfig(stream=sys.stdout, format='%(threadName)s: %(asctime)s: %(levelname)s: %(message)s', level=logging_levels[args.loglevel])
+	logging.getLogger("requests").setLevel(logging.WARNING)
+	logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 	hub = HubInstance()
 
