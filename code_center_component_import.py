@@ -220,7 +220,7 @@ class CodeCenterComponentImport(object):
 						suite_component_info = self._reconcile_component_approvals(
 							component_name_and_version, component_approvals)
 					except ApprovalStatusConflict:
-						conflicts.append(component_approvals)
+						conflicts.extend(component_approvals)
 						logging.warning(
 							"The component {} could not be imported due to an approval status conflict among the CC component approval requests ({})".format(
 								component_name_and_version, component_approvals))
@@ -266,14 +266,16 @@ class CodeCenterComponentImport(object):
 					)
 				self._dump_conflicts(conflicts)
 
-	def _dump_updated_to_file(self, failed):
-		self._dump_to_file(failed, "-updated.csv")
+	def _dump_updated_to_file(self, updated):
+		import pdb; pdb.set_trace()
+		self._dump_to_file(updated, "-updated.csv")
 
 	def _dump_failed_to_file(self, failed):
 		self._dump_to_file(failed, "-failed.csv")
 
-	def _dump_conflicts(self, skipped):
-		self._dump_to_file(skipped, "-conflicts.csv")
+	def _dump_conflicts(self, conflicts):
+		import pdb; pdb.set_trace()
+		self._dump_to_file(conflicts, "-conflicts.csv")
 		
 	def _dump_equivalent_to_file(self, equivalent):
 		self._dump_to_file(equivalent, "-equivalent.csv")
