@@ -1,0 +1,4 @@
+approval_status|component_name|component_version|kb_license_name|project_name|project_version|user_name|first_name|last_name|time_submitted|kb_component_id|kb_release_id|catalogid|projectid
+APPROVED|slf4j-nop|2.0|Apache License 2.0|WFC develop - WFAN|Unspecified|someone@synopsys.com|Someone|Synopsys|2018-07-30 16:43:22.246|slf4jnop1459799|2124956|855269|854870
+PENDING|slf4j-nop|2.0|Apache License 2.0|WFC develop - WFAN|Unspecified|someone@synopsys.com|Someone|Synopsys|2018-07-30 16:43:22.246|slf4jnop1459799|2124956|855269|854870
+REJECTED|slf4j-nop|2.0|Apache License 2.0|WFC develop - WFAN|Unspecified|someone@synopsys.com|Someone|Synopsys|2018-07-30 16:43:22.246|slf4jnop1459799|2124956|855269|854870

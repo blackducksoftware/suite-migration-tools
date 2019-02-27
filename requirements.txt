@@ -2,4 +2,5 @@ blackduck>=0.0.12
 
 # for unit tests
 pytest
+requests-mock
 
