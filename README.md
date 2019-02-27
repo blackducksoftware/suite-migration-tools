@@ -16,7 +16,7 @@ The user of these tools needs to be reaonsably proficient with:
 * Protex, 
 * CC, 
 * BD Hub - especially, scans, project-versions, snippets, and component management 
-* python 
+* python3 (no support for python2)
 * bash (or Bourne) shell
 * working from the command line.
 
@@ -27,8 +27,9 @@ Customers want to preserve the time invested in marking their KB components and 
 ### How to export and import CC KB component approval status into the Hub
 
 1. Export from CC using cc-export-project-component-approvals.sh on your CC DB server
-	* This script includes the psql command you should run on your CC DB server machine to generate a pipe-delimited file with all the KB components and their approval status.
-	* The script creates a pipe (|) delimited CSV file with the KB components and their approval status info, along with other info
+  * This script includes the psql command you should run on your CC DB server machine to generate a pipe-delimited file with all the KB components and their approval status.
+  * The script creates a pipe (|) delimited CSV file with the KB components and their approval status info, along with other info
+  * The query produces one row for each project-component approval, so it is possible (likely) that the resulting CSV file will include multiple rows pertaining to the same component but with different approval status values
 1. Import the file contents to your Black Duck Hub server using code_center_component_import.py as follows using python3/pip3,
 
 ```
@@ -49,19 +50,12 @@ code_center_component_import.py uses the _blackduck_ python package to communica
 
 The tool will parse the CSV file, reading the components and their approval status info and then:
 
+* Reconcile the case where there are more than one component approval for the same component.
+  * If there are conflicts (e.g. an APPROVED and a REJECTED) it will skip the component
+  * If there is an APPROVED (and no REJECTED) it will update using APPROVED
+  * If there is a REJECTED (and no APPROVED) it will update using REJECTED
 * Summarize the results
 * Will dump the component info into files for further analysis/processing as required
-
-Here's an excerpt of the output:
-
-```
-MainThread: 2019-02-11 11:48:40,303: INFO: Updated 1956 suite components or component versions
-MainThread: 2019-02-11 11:48:40,331: INFO: Dumped 1956 components into sample-data/code-center-export-02-05-2019-updated.csv
-MainThread: 2019-02-11 11:48:40,331: INFO: Did not update 598 suite components because the approval status they map to is equal to the existing Hub component approval status
-MainThread: 2019-02-11 11:48:40,338: INFO: Dumped 598 components into sample-data/code-center-export-02-05-2019-equivalent.csv
-MainThread: 2019-02-11 11:48:40,338: INFO: Failed to update 71 suite components or component versions
-MainThread: 2019-02-11 11:48:40,339: INFO: Dumped 71 components into sample-data/code-center-export-02-05-2019-failed.csv
-```
 
 #### Resetting Black Duck (Hub) Component Approval Status
 
